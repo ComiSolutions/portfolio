@@ -158,25 +158,6 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
-// Update your existing JS with this responsive version
-const themeToggle = document.getElementById('theme-toggle');
 
-function updateThemeIcon(theme) {
-  const icons = {
-    dark: '🌙',
-    light: '☀️'
-  };
-  
-  // Update button content based on screen size
-  const screenWidth = window.innerWidth;
-  if (screenWidth < 480) {
-    themeToggle.innerHTML = `<span class="${theme}-icon" aria-hidden="true">${icons[theme]}</span>`;
-  } else {
-    themeToggle.innerHTML = `
-      <span class="light-icon" aria-hidden="true">${icons.light}</span>
-      <span class="dark-icon" aria-hidden="true">${icons.dark}</span>
-    `;
-  }
-}
 
 

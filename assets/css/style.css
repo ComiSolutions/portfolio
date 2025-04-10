@@ -1241,7 +1241,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .clients-item { min-width: calc(33.33% - 10px); }
 
-
+.avatar-box img { border-radius: 20px; }
 
   /**
    * #PORTFOLIO, BLOG 
@@ -1572,7 +1572,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     gap: 30px 15px;
   }
 
-
+.avatar-box img { border-radius: 20px; }
 
   /**
    * NAVBAR

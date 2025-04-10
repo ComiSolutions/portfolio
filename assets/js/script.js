@@ -158,19 +158,45 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+// Update your existing JS with this responsive version
 const themeToggle = document.getElementById('theme-toggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-// Check for saved theme preference or use system preference
+function updateThemeIcon(theme) {
+  const icons = {
+    dark: '🌙',
+    light: '☀️'
+  };
+  
+  // Update button content based on screen size
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 480) {
+    themeToggle.innerHTML = `<span class="${theme}-icon" aria-hidden="true">${icons[theme]}</span>`;
+  } else {
+    themeToggle.innerHTML = `
+      <span class="light-icon" aria-hidden="true">${icons.light}</span>
+      <span class="dark-icon" aria-hidden="true">${icons.dark}</span>
+    `;
+  }
+}
+
+// Initial setup
 const currentTheme = localStorage.getItem('theme') || 
-                     (prefersDarkScheme.matches ? 'dark' : 'light');
+                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 document.documentElement.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
 
-// Toggle between dark and light
+// Toggle functionality
 themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+});
+
+// Handle screen resize
+window.addEventListener('resize', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  updateThemeIcon(currentTheme);
 });

@@ -179,24 +179,4 @@ function updateThemeIcon(theme) {
   }
 }
 
-// Initial setup
-const currentTheme = localStorage.getItem('theme') || 
-                   (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-document.documentElement.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
 
-// Toggle functionality
-themeToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-// Handle screen resize
-window.addEventListener('resize', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  updateThemeIcon(currentTheme);
-});
